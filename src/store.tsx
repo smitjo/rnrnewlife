@@ -62,7 +62,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   // the shell and the browser chrome all stay in sync.
   useEffect(() => {
     const root = document.documentElement
-    root.dataset.theme = settings.theme
+    root.dataset.appTheme = settings.theme
     root.style.setProperty('--reader-scale', String(settings.fontScale))
     const meta = document.querySelector('meta[name="theme-color"]')
     if (meta) {

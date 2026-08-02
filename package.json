@@ -12,6 +12,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "build:single": "node scripts/build-single-file.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "sync:catalog": "node scripts/sync-catalog.mjs"

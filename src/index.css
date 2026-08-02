@@ -24,12 +24,14 @@
 }
 
 /*
- * Theming is driven by `data-theme` on <html> (light | dark | sepia).
+ * Theming is driven by `data-app-theme` on <html> (light | dark | sepia).
  * Every surface below reads from these variables so the reader can switch
- * palettes without re-styling individual components.
+ * palettes without re-styling individual components. The attribute is
+ * app-prefixed so embedding the build in a host page that manages its own
+ * `data-theme` (a docs site, an artifact viewer) can't fight it.
  */
 :root,
-[data-theme='light'] {
+[data-app-theme='light'] {
   --app-bg: #fdfaf5;
   --app-surface: #ffffff;
   --app-surface-2: #f7f1e7;
@@ -41,7 +43,7 @@
   color-scheme: light;
 }
 
-[data-theme='sepia'] {
+[data-app-theme='sepia'] {
   --app-bg: #f4ecd8;
   --app-surface: #faf3e3;
   --app-surface-2: #ece0c6;
@@ -53,7 +55,7 @@
   color-scheme: light;
 }
 
-[data-theme='dark'] {
+[data-app-theme='dark'] {
   --app-bg: #0c1110;
   --app-surface: #141b1a;
   --app-surface-2: #1c2524;
@@ -127,7 +129,7 @@
     color: #fff;
   }
 
-  [data-theme='dark'] .btn-primary {
+  [data-app-theme='dark'] .btn-primary {
     color: #06201d;
   }
 
@@ -156,7 +158,7 @@
     color: #fff;
   }
 
-  [data-theme='dark'] .chip[data-active='true'] {
+  [data-app-theme='dark'] .chip[data-active='true'] {
     color: #06201d;
   }
 }
