@@ -1,0 +1,21 @@
+{
+  "name": "RnR New Life · ห้องสมุดหนังสือ",
+  "short_name": "RnR หนังสือ",
+  "description": "อ่าน ค้นหา และดาวน์โหลดหนังสือของ RnR New Life Ministry",
+  "lang": "th",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdfaf5",
+  "theme_color": "#0f766e",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
