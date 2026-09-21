@@ -1,0 +1,181 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans:
+    'Noto Sans Thai', 'IBM Plex Sans Thai', 'Sarabun', ui-sans-serif, system-ui, -apple-system,
+    'Segoe UI', sans-serif;
+  --font-serif: 'Noto Serif Thai', 'Sarabun', ui-serif, Georgia, serif;
+
+  --color-brand-50: #f0fdfa;
+  --color-brand-100: #ccfbf1;
+  --color-brand-200: #99f6e4;
+  --color-brand-300: #5eead4;
+  --color-brand-400: #2dd4bf;
+  --color-brand-500: #14b8a6;
+  --color-brand-600: #0d9488;
+  --color-brand-700: #0f766e;
+  --color-brand-800: #115e59;
+  --color-brand-900: #134e4a;
+
+  --color-sand-50: #fdfaf5;
+  --color-sand-100: #f7f1e7;
+  --color-sand-200: #ece2d2;
+  --color-sand-300: #dccdb5;
+}
+
+/*
+ * Theming is driven by `data-app-theme` on <html> (light | dark | sepia).
+ * Every surface below reads from these variables so the reader can switch
+ * palettes without re-styling individual components. The attribute is
+ * app-prefixed so embedding the build in a host page that manages its own
+ * `data-theme` (a docs site, an artifact viewer) can't fight it.
+ */
+:root,
+[data-app-theme='light'] {
+  --app-bg: #fdfaf5;
+  --app-surface: #ffffff;
+  --app-surface-2: #f7f1e7;
+  --app-border: #e7ded0;
+  --app-text: #1c1917;
+  --app-muted: #6b625a;
+  --app-accent: #0f766e;
+  --app-accent-soft: #ccfbf1;
+  color-scheme: light;
+}
+
+[data-app-theme='sepia'] {
+  --app-bg: #f4ecd8;
+  --app-surface: #faf3e3;
+  --app-surface-2: #ece0c6;
+  --app-border: #ddcda9;
+  --app-text: #3b2f1d;
+  --app-muted: #7a6a4f;
+  --app-accent: #8a5a20;
+  --app-accent-soft: #ecdcbd;
+  color-scheme: light;
+}
+
+[data-app-theme='dark'] {
+  --app-bg: #0c1110;
+  --app-surface: #141b1a;
+  --app-surface-2: #1c2524;
+  --app-border: #2a3634;
+  --app-text: #e8edec;
+  --app-muted: #94a3a0;
+  --app-accent: #2dd4bf;
+  --app-accent-soft: #123330;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--app-bg);
+    color: var(--app-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--app-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--app-accent-soft);
+  }
+}
+
+@layer components {
+  .surface {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+  }
+
+  .muted {
+    color: var(--app-muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition:
+      transform 120ms ease,
+      opacity 120ms ease,
+      background 120ms ease;
+  }
+
+  .btn:active {
+    transform: scale(0.97);
+  }
+
+  .btn-primary {
+    background: var(--app-accent);
+    color: #fff;
+  }
+
+  [data-app-theme='dark'] .btn-primary {
+    color: #06201d;
+  }
+
+  .btn-ghost {
+    background: var(--app-surface-2);
+    color: var(--app-text);
+    border-color: var(--app-border);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border-radius: 9999px;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface);
+    padding: 0.35rem 0.8rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .chip[data-active='true'] {
+    background: var(--app-accent);
+    border-color: var(--app-accent);
+    color: #fff;
+  }
+
+  [data-app-theme='dark'] .chip[data-active='true'] {
+    color: #06201d;
+  }
+}
+
+/* Horizontal shelves scroll but never show a scrollbar on desktop. */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
