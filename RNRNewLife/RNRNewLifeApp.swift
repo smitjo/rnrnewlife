@@ -2,12 +2,14 @@ import SwiftUI
 
 @main
 struct RNRNewLifeApp: App {
-    @StateObject private var store = ContentStore()
+    @StateObject private var library = LibraryStore()
+    @StateObject private var readingList = ReadingListStore()
 
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environmentObject(store)
+                .environmentObject(library)
+                .environmentObject(readingList)
         }
     }
 }

@@ -1,22 +1,33 @@
 import SwiftUI
 
 struct AboutView: View {
-    @EnvironmentObject private var store: ContentStore
+    @EnvironmentObject private var library: LibraryStore
 
     var body: some View {
         NavigationStack {
             List {
-                Section("About") {
-                    Text(store.content.about)
-                }
-                Section("Get in touch") {
-                    Link(destination: store.content.websiteURL) {
-                        Label(store.content.websiteURL.host() ?? "Website", systemImage: "safari")
+                Section {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(library.catalog.missionName).font(.title2.bold())
+                        Text(library.catalog.tagline)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
                     }
-                    if !store.content.contactEmail.isEmpty,
-                       let mailto = URL(string: "mailto:\(store.content.contactEmail)") {
+                    .padding(.vertical, 4)
+                }
+
+                Section("About") {
+                    Text(library.catalog.about)
+                }
+
+                Section("Get in touch") {
+                    Link(destination: library.catalog.websiteURL) {
+                        Label(library.catalog.websiteURL.host() ?? "Website", systemImage: "safari")
+                    }
+                    if !library.catalog.contactEmail.isEmpty,
+                       let mailto = URL(string: "mailto:\(library.catalog.contactEmail)") {
                         Link(destination: mailto) {
-                            Label(store.content.contactEmail, systemImage: "envelope")
+                            Label(library.catalog.contactEmail, systemImage: "envelope")
                         }
                     }
                 }
@@ -27,5 +38,5 @@ struct AboutView: View {
 }
 
 #Preview {
-    AboutView().environmentObject(ContentStore.preview)
+    AboutView().environmentObject(LibraryStore.preview)
 }

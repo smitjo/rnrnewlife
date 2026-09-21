@@ -1,23 +1,25 @@
 import SwiftUI
 
 struct RootView: View {
-    @EnvironmentObject private var store: ContentStore
+    @EnvironmentObject private var library: LibraryStore
 
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem { Label("Home", systemImage: "house") }
+            LibraryView()
+                .tabItem { Label("Library", systemImage: "books.vertical") }
 
-            ScheduleView()
-                .tabItem { Label("Schedule", systemImage: "calendar") }
+            SavedView()
+                .tabItem { Label("Saved", systemImage: "bookmark") }
 
             AboutView()
                 .tabItem { Label("About", systemImage: "info.circle") }
         }
-        .onAppear { store.loadIfNeeded() }
+        .onAppear { library.loadIfNeeded() }
     }
 }
 
 #Preview {
-    RootView().environmentObject(ContentStore.preview)
+    RootView()
+        .environmentObject(LibraryStore.preview)
+        .environmentObject(ReadingListStore())
 }
